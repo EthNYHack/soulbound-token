@@ -40,6 +40,11 @@ contract Certificate is ERC721 {
         enabled[_id] = false;
     }
 
+    function burn(uint256 _id) public {
+        require(msg.sender == ownerOf(_id), "Not Certificate Owner");
+        _burn(_id);
+    }
+
     function tokenURI(uint256 _id)
         public
         view
