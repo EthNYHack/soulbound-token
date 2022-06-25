@@ -1,2 +1,5 @@
 cache/
 out/
+.env
+mnemonic.txt
+.DS_Store
