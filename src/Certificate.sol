@@ -27,6 +27,14 @@ contract Certificate is ERC721 {
         return tokenId;
     }
 
+    function transferFrom(
+        address,
+        address,
+        uint256
+    ) public pure override {
+        revert("Cannot transfer certificate");
+    }
+
     function revoke(uint256 _id) public {
         require(msg.sender == emitterToId[_id], "Not Certificate Emitter");
         enabled[_id] = false;

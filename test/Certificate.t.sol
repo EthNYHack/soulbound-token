@@ -44,6 +44,18 @@ contract CertificateTest is Test {
         //assert
     }
 
+    function testBurn_ShouldRemoveTheCertificate_WhenOwnerCalls() public {
+        //setUp
+        //execution
+        //assert
+    }
+
+    function testBurn_ShouldFail_WhenNotOwner() public {
+        //setUp
+        //execution
+        //assert
+    }
+
     function testTransfer_ShouldFail_WhenCalled() public {
         //setUp
         vm.prank(certifier);
@@ -54,6 +66,20 @@ contract CertificateTest is Test {
         vm.prank(user1);
         cert.transferFrom(user1, user2, 1);
         //assert
+        assert(cert.balanceOf(user1) == 1);
+    }
+
+    function testSafeTransfer_ShouldFail_WhenCalled() public {
+        //setUp
+        vm.prank(certifier);
+        cert.mintTo(user1, tokenUri);
+        //execution
+
+        vm.expectRevert("Cannot transfer certificate");
+        vm.prank(user1);
+        cert.safeTransferFrom(user1, user2, 1);
+        //assert
+        assert(cert.balanceOf(user1) == 1);
     }
 
     function testRevoke_ShouldFail_WhenNotMinter() public {
