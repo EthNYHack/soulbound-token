@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
 interface IERC5114 {
     // fired anytime a new instance of this token is minted
@@ -24,12 +25,18 @@ interface IERC5114 {
     // the collectionUri **MUST NOT** point at mutable/censorable content (e.g., https://)
     // data from `tokenUri` takes precedence over data returned by this method
     // any external links referenced by the content at `collectionUri` also **MUST** follow all of the above rules
-    function collectionUri() external view returns (string collectionUri);
+    function collectionUri()
+        external
+        view
+        returns (string memory collectionUri);
 
     // returns a censorship resistant URI with details about this token instance
     // the tokenUri **MUST** be immutable and content addressable (e.g., ipfs://)
     // the tokenUri **MUST NOT** point at mutable/censorable content (e.g., https://)
     // data from this takes precedence over data returned by `collectionUri`
     // any external links referenced by the content at `tokenUri` also **MUST** follow all of the above rules
-    function tokenUri(uint256 tokenId) external view returns (string tokenUri);
+    function tokenUri(uint256 tokenId)
+        external
+        view
+        returns (string memory tokenUri);
 }
